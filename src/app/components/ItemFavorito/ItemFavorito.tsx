@@ -10,9 +10,14 @@ export default function ItemFavorito({
   itemFavorito,
   setFavoritos,
 }: IItemFavoritoProps) {
+
   const removerFavorito = (id: string) => {
-    setFavoritos((favoritos) => favoritos.filter((item) => item.id !== id));
+    setFavoritos((favoritos) =>
+      favoritos.filter((item) => item.id !== id)
+    );
   };
+
+  const precoComDesconto = calculaValorComPorcentagemDeDesconto(itemFavorito.preco,itemFavorito.desconto);
 
   return (
     <tr key={itemFavorito.id}>
@@ -25,17 +30,14 @@ export default function ItemFavorito({
           height={50}
         />
         <div className="d-flex flex-column ms-2">
-          <span className="">{itemFavorito.nome}</span>
+          <span>{itemFavorito.nome}</span>
           <small className="text-muted">{itemFavorito.descricao}</small>
         </div>
       </td>
 
       <td>
         R${" "}
-        {calculaValorComPorcentagemDeDesconto(
-          Number(itemFavorito.preco),
-          itemFavorito.desconto
-        ).toFixed(2)}
+        {precoComDesconto.toFixed(2)}
       </td>
 
       <td>{itemFavorito.desconto}%</td>

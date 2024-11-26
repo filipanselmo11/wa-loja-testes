@@ -7,7 +7,7 @@ interface Produto {
   id: string;
   fotos: Foto[];
   nome: string;
-  preco: string;
+  preco: number;
   desconto: number;
   descricao: string;
   vendido: string;
